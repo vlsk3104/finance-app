@@ -1,20 +1,12 @@
-import { useGetAccounts } from '@/features/accounts/api/use-get-accounts';
-import React from 'react';
+'use client';
+
+import { Button } from '@/components/ui/button';
+import { useNewAccount } from '@/features/accounts/hooks/use-new-account';
 
 const DashboardPage = () => {
-  const { data: accounts, isLoading } = useGetAccounts();
+  const { onOpen } = useNewAccount();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <div>
-      {accounts?.map((account) => (
-        <div key={account.id}>{account.name}</div>
-      ))}
-    </div>
-  );
+  return <Button onClick={onOpen}>新しくアカウントを追加する</Button>;
 };
 
 export default DashboardPage;
