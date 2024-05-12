@@ -1,7 +1,20 @@
+import { useGetAccounts } from '@/features/accounts/api/use-get-accounts';
 import React from 'react';
 
 const DashboardPage = () => {
-  return <div>DashboardPage</div>;
+  const { data: accounts, isLoading } = useGetAccounts();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      {accounts?.map((account) => (
+        <div key={account.id}>{account.name}</div>
+      ))}
+    </div>
+  );
 };
 
 export default DashboardPage;
