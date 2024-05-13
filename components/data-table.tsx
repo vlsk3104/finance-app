@@ -25,11 +25,13 @@ import {
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Trash } from 'lucide-react';
+import { useConfirm } from '@/hooks/use-confirm';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   filterKey: string;
+  filterKeyJa: string;
   onDelete: (rows: Row<TData>[]) => void;
   disabled?: boolean;
 }
@@ -38,9 +40,15 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   filterKey,
+  filterKeyJa,
   onDelete,
   disabled,
 }: DataTableProps<TData, TValue>) {
+  const [ConfirmationDialog, confirm] = useConfirm(
+    '本当に削除してよろしいですか？',
+    '一括削除を実行しようとしています。'
+  );
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -66,12 +74,13 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
+      <ConfirmationDialog />
       <div className="flex items-center py-4">
         <Input
-          placeholder={`Filter ${filterKey}...`}
+          placeholder={`${filterKeyJa}で検索`}
           value={(table.getColumn(filterKey)?.getFilterValue() as string) ?? ''}
           onChange={(event) =>
-            table.getColumn('email')?.setFilterValue(event.target.value)
+            table.getColumn(filterKey)?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -81,6 +90,12 @@ export function DataTable<TData, TValue>({
             variant="outline"
             className="ml-auto font-normal text-xs"
             disabled={disabled}
+            onClick={async () => {
+              const ok = await confirm();
+              if (!ok) return;
+              onDelete(table.getFilteredSelectedRowModel().rows);
+              table.resetRowSelection();
+            }}
           >
             <Trash className="size-4 mr-2" />
             {table.getFilteredSelectedRowModel().rows.length}件 削除する
@@ -130,7 +145,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  該当するデータがありません🔍
                 </TableCell>
               </TableRow>
             )}
@@ -139,8 +154,8 @@ export function DataTable<TData, TValue>({
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{' '}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+          {table.getFilteredSelectedRowModel().rows.length} /{' '}
+          {table.getFilteredRowModel().rows.length}件、選択中
         </div>
         <Button
           variant="outline"
@@ -148,7 +163,7 @@ export function DataTable<TData, TValue>({
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
-          Previous
+          前へ
         </Button>
         <Button
           variant="outline"
@@ -156,7 +171,7 @@ export function DataTable<TData, TValue>({
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
-          Next
+          次へ
         </Button>
       </div>
     </div>
