@@ -15,6 +15,13 @@
       "when": 1715474204212,
       "tag": "0001_lame_firebrand",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1715577803698,
+      "tag": "0002_yellow_lyja",
+      "breakpoints": true
     }
   ]
 }
