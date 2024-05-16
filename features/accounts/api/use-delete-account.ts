@@ -17,12 +17,12 @@ export const useDeleteAccount = (id?: string) => {
       return await response.json();
     },
     onSuccess: () => {
-      toast.success('アカウントを削除しました');
+      toast.success('支払方法を削除しました');
       queryClient.invalidateQueries({ queryKey: ['account', { id }] });
       queryClient.invalidateQueries({ queryKey: ['accounts'] });
     },
     onError: () => {
-      toast.error('アカウントの削除に失敗しました');
+      toast.error('支払方法の削除に失敗しました');
     },
   });
 

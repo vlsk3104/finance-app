@@ -48,7 +48,7 @@ const TransactionsPage = () => {
         <CardContent>
           <DataTable
             filterKey="payee"
-            filterKeyJa="支払い先"
+            filterKeyJa="支払先"
             columns={columns}
             data={transactions}
             onDelete={(row) => {

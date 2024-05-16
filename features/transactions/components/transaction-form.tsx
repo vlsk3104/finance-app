@@ -98,10 +98,10 @@ const TransactionForm = ({
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>アカウント</FormLabel>
+              <FormLabel>支払方法</FormLabel>
               <FormControl>
                 <Select
-                  placeholder="アカウントを選択してください"
+                  placeholder="支払方法を選択してください"
                   options={accountOptions}
                   onCreate={onCreateAccount}
                   value={field.value}
@@ -136,12 +136,12 @@ const TransactionForm = ({
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>支払い先</FormLabel>
+              <FormLabel>支払先</FormLabel>
               <FormControl>
                 <Input
                   {...field}
                   disabled={disabled}
-                  placeholder="支払い先を入力してください"
+                  placeholder="支払先を入力してください"
                 />
               </FormControl>
             </FormItem>

@@ -91,7 +91,7 @@ export const columns: ColumnDef<ResponseType>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
-          支払い先
+          支払先
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -131,7 +131,7 @@ export const columns: ColumnDef<ResponseType>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
-          アカウント
+          支払方法
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );

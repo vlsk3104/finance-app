@@ -21,13 +21,13 @@ export const useEditAccount = (id?: string) => {
       return await response.json();
     },
     onSuccess: () => {
-      toast.success('アカウントを編集しました');
+      toast.success('支払方法を編集しました');
       queryClient.invalidateQueries({ queryKey: ['account', { id }] });
       queryClient.invalidateQueries({ queryKey: ['accounts'] });
       queryClient.invalidateQueries({ queryKey: ['transactions'] });
     },
     onError: () => {
-      toast.error('アカウントの編集に失敗しました');
+      toast.error('支払方法の編集に失敗しました');
     },
   });
 

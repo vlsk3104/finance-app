@@ -80,7 +80,7 @@ const AccountForm = ({
             variant="outline"
           >
             <Trash className="size-4 mr-4" />
-            アカウントを削除する
+            支払方法を削除する
           </Button>
         )}
       </form>
