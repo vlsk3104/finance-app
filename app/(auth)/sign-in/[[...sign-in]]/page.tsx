@@ -9,7 +9,7 @@ export default function Page() {
         <div className="text-center space-y-4 pt-16 lg:pt-0">
           <h1 className="font-bold text-3xl text-[#2e2a47]">おかえりなさい</h1>
           <p className="text-base text-[#7e8ca0]">
-            ログインするかアカウントを作成してダッシュボードに戻りましょう！
+            ログインして家計簿を書きましょう！
           </p>
         </div>
         <div className="flex items-center justify-center mt-8">

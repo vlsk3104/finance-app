@@ -92,9 +92,11 @@ export function DataTable<TData, TValue>({
             disabled={disabled}
             onClick={async () => {
               const ok = await confirm();
-              if (!ok) return;
-              onDelete(table.getFilteredSelectedRowModel().rows);
-              table.resetRowSelection();
+
+              if (ok) {
+                onDelete(table.getFilteredSelectedRowModel().rows);
+                table.resetRowSelection();
+              }
             }}
           >
             <Trash className="size-4 mr-2" />

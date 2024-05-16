@@ -32,9 +32,9 @@ const NewAccountSheet = () => {
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className="space-y-4">
         <SheetHeader>
-          <SheetTitle>新規でアカウント作成する</SheetTitle>
+          <SheetTitle>新規で支払方法作成する</SheetTitle>
           <SheetDescription>
-            家計簿作成するために新しいアカウントを作成します。
+            家計簿作成するために新しい支払方法を作成します。
           </SheetDescription>
         </SheetHeader>
         <AccountForm
