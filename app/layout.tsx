@@ -22,13 +22,13 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={jaJP}>
       <html lang="ja">
-        <QueryProvider>
-          <SheetProvider />
-          <body className={inter.className}>
+        <body className={inter.className}>
+          <QueryProvider>
+            <SheetProvider />
             <main>{children}</main>
             <Toaster />
-          </body>
-        </QueryProvider>
+          </QueryProvider>
+        </body>
       </html>
     </ClerkProvider>
   );

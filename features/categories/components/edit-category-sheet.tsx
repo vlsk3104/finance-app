@@ -36,7 +36,10 @@ const EditCategorySheet = () => {
 
   const onSubmit = (values: FormValues) => {
     editMutation.mutate(values, {
-      onSuccess: () => onClose(),
+      onSuccess: () => {
+        onClose();
+        categoryQuery.refetch();
+      },
     });
   };
 

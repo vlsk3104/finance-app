@@ -49,7 +49,8 @@ const app = new Hono()
       const [data] = await db
         .select({ id: categories.id, name: categories.name })
         .from(categories)
-        .where(and(eq(categories.userId, auth.userId), eq(categories.id, id)));
+        .where(and(eq(categories.userId, auth.userId), eq(categories.id, id)))
+        .orderBy(categories.createdAt);
 
       if (!data) {
         return c.json({ error: 'Not found' }, 404);

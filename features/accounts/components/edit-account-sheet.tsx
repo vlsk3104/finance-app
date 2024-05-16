@@ -37,7 +37,10 @@ const EditAccountSheet = () => {
 
   const onSubmit = (values: FormValues) => {
     editMutation.mutate(values, {
-      onSuccess: () => onClose(),
+      onSuccess: () => {
+        onClose();
+        accountQuery.refetch();
+      },
     });
   };
 

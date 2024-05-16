@@ -2,7 +2,7 @@ import { db } from '@/db/drizzle';
 import { accounts, insertAccountSchema } from '@/db/schema';
 import { clerkMiddleware, getAuth } from '@hono/clerk-auth';
 import { Hono } from 'hono';
-import { and, eq, inArray } from 'drizzle-orm';
+import { and, desc, eq, inArray } from 'drizzle-orm';
 import { zValidator } from '@hono/zod-validator';
 import { createId } from '@paralleldrive/cuid2';
 import { z } from 'zod';
@@ -49,7 +49,8 @@ const app = new Hono()
       const [data] = await db
         .select({ id: accounts.id, name: accounts.name })
         .from(accounts)
-        .where(and(eq(accounts.userId, auth.userId), eq(accounts.id, id)));
+        .where(and(eq(accounts.userId, auth.userId), eq(accounts.id, id)))
+        .orderBy(desc(accounts.createdAt));
 
       if (!data) {
         return c.json({ error: 'Not found' }, 404);

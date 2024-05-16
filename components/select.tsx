@@ -45,6 +45,7 @@ const Select = ({
       onChange={onSelect}
       options={options}
       onCreateOption={onCreate}
+      formatCreateLabel={(inputValue) => `「${inputValue}」を作成する`}
       isDisabled={disabled}
     />
   );

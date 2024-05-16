@@ -1,7 +1,6 @@
-'use client';
-
 import * as React from 'react';
 import { format } from 'date-fns';
+import { ja } from 'date-fns/locale';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { SelectSingleEventHandler } from 'react-day-picker';
 
@@ -33,11 +32,16 @@ export default function DatePicker({ value, onChange, disabled }: Props) {
           )}
         >
           <CalendarIcon className="size-4 mr-2" />
-          {value ? format(value, 'PPP') : <span>Pick a date</span>}
+          {value ? (
+            format(value, 'PPP', { locale: ja })
+          ) : (
+            <span>日付を選択</span>
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
         <Calendar
+          locale={ja}
           mode="single"
           selected={value}
           onSelect={onChange}

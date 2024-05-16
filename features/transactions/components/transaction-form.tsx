@@ -1,5 +1,4 @@
-import { insertAccountSchema, insertTransactionSchema } from '@/db/schema';
-import React from 'react';
+import { insertTransactionSchema } from '@/db/schema';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -17,7 +16,6 @@ import Select from '@/components/select';
 import DatePicker from '@/components/date-picker';
 import { Textarea } from '@/components/ui/textarea';
 import AmountInput from '@/components/amount-input';
-import { convertAmountToMilliunits } from '@/lib/utils';
 
 const formSchema = z.object({
   date: z.coerce.date(),
@@ -63,9 +61,8 @@ const TransactionForm = ({
 
   const handleSubmit = (values: FormValues) => {
     const amount = parseFloat(values.amount);
-    const amountInMilliunits = convertAmountToMilliunits(amount);
     console.log({ values });
-    onSubmit({ ...values, amount: amountInMilliunits });
+    onSubmit({ ...values, amount });
   };
 
   const handleDelete = () => {
@@ -156,8 +153,9 @@ const TransactionForm = ({
               <FormControl>
                 <AmountInput
                   {...field}
+                  ref={field.ref}
                   disabled={disabled}
-                  placeholder="0.00"
+                  placeholder="1000"
                 />
               </FormControl>
             </FormItem>

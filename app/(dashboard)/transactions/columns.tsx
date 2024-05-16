@@ -8,6 +8,7 @@ import { InferResponseType } from 'hono';
 import { ArrowUpDown } from 'lucide-react';
 import Actions from './actions';
 import { format } from 'date-fns';
+import { ja } from 'date-fns/locale';
 import { formatCurrency } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import AccountColumn from './account-column';
@@ -57,7 +58,7 @@ export const columns: ColumnDef<ResponseType>[] = [
     cell: ({ row }) => {
       const date = row.getValue('date') as Date;
 
-      return <span>{format(date, 'dd MMMM, yyyy')}</span>;
+      return <span>{format(date, 'PPP', { locale: ja })}</span>;
     },
   },
   {
