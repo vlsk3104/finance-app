@@ -4,26 +4,25 @@ import { InferResponseType } from 'hono';
 import { toast } from 'sonner';
 
 type ResponseType = InferResponseType<
-  (typeof client.api.categories)[':id']['$delete']
+  (typeof client.api.transactions)[':id']['$delete']
 >;
 
-export const useDeleteCategory = (id?: string) => {
+export const useDeleteTransaction = (id?: string) => {
   const queryClient = useQueryClient();
   const mutation = useMutation<ResponseType, Error>({
     mutationFn: async (json) => {
-      const response = await client.api.categories[':id']['$delete']({
+      const response = await client.api.transactions[':id']['$delete']({
         param: { id },
       });
       return await response.json();
     },
     onSuccess: () => {
-      toast.success('カテゴリーを削除しました');
-      queryClient.invalidateQueries({ queryKey: ['category', { id }] });
-      queryClient.invalidateQueries({ queryKey: ['categories'] });
+      toast.success('取引を削除しました');
+      queryClient.invalidateQueries({ queryKey: ['transaction', { id }] });
       queryClient.invalidateQueries({ queryKey: ['transactions'] });
     },
     onError: () => {
-      toast.error('カテゴリーの削除に失敗しました');
+      toast.error('取引の削除に失敗しました');
     },
   });
 

@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 type ResponseType = InferResponseType<typeof client.api.categories.$post>;
 type RequestType = InferRequestType<typeof client.api.categories.$post>['json'];
 
-export const useCreateAccount = () => {
+export const useCreateCategory = () => {
   const queryClient = useQueryClient();
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (json) => {
@@ -16,6 +16,7 @@ export const useCreateAccount = () => {
     onSuccess: () => {
       toast.success('カテゴリーを作成しました');
       queryClient.invalidateQueries({ queryKey: ['categories'] });
+      queryClient.invalidateQueries({ queryKey: ['transactions'] });
     },
     onError: () => {
       toast.error('カテゴリーの作成に失敗しました');

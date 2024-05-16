@@ -10,7 +10,7 @@ import { useNewCategory } from '../hooks/use-new-category';
 import AccountForm from './category-form';
 import { insertCategorySchema } from '@/db/schema';
 import { z } from 'zod';
-import { useCreateAccount } from '../api/use-create-category';
+import { useCreateCategory } from '../api/use-create-category';
 
 const formSchema = insertCategorySchema.pick({ name: true });
 
@@ -19,7 +19,7 @@ type FormValues = z.input<typeof formSchema>;
 const NewCategorySheet = () => {
   const { isOpen, onClose } = useNewCategory();
 
-  const mutation = useCreateAccount();
+  const mutation = useCreateCategory();
 
   const onSubmit = (values: FormValues) => {
     mutation.mutate(values, {

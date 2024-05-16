@@ -4,30 +4,29 @@ import { InferRequestType, InferResponseType } from 'hono';
 import { toast } from 'sonner';
 
 type ResponseType = InferResponseType<
-  (typeof client.api.accounts)[':id']['$patch']
+  (typeof client.api.transactions)[':id']['$patch']
 >;
 type RequestType = InferRequestType<
-  (typeof client.api.accounts)[':id']['$patch']
+  (typeof client.api.transactions)[':id']['$patch']
 >['json'];
 
-export const useEditAccount = (id?: string) => {
+export const useEditTransaction = (id?: string) => {
   const queryClient = useQueryClient();
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (json) => {
-      const response = await client.api.accounts[':id']['$patch']({
+      const response = await client.api.transactions[':id']['$patch']({
         param: { id },
         json,
       });
       return await response.json();
     },
     onSuccess: () => {
-      toast.success('アカウントを編集しました');
-      queryClient.invalidateQueries({ queryKey: ['account', { id }] });
-      queryClient.invalidateQueries({ queryKey: ['accounts'] });
+      toast.success('取引を編集しました');
+      queryClient.invalidateQueries({ queryKey: ['transaction', { id }] });
       queryClient.invalidateQueries({ queryKey: ['transactions'] });
     },
     onError: () => {
-      toast.error('アカウントの編集に失敗しました');
+      toast.error('取引の編集に失敗しました');
     },
   });
 
