@@ -14,11 +14,11 @@ export const useCreateAccount = () => {
       return await response.json();
     },
     onSuccess: () => {
-      toast.success('支払方法を作成しました');
+      toast.success('決済手段・口座を作成しました');
       queryClient.invalidateQueries({ queryKey: ['accounts'] });
     },
     onError: () => {
-      toast.error('支払方法の作成に失敗しました');
+      toast.error('決済手段・口座の作成に失敗しました');
     },
   });
 
