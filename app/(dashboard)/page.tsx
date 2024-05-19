@@ -1,12 +1,11 @@
-'use client';
-
-import { Button } from '@/components/ui/button';
-import { useNewAccount } from '@/features/accounts/hooks/use-new-account';
+import DataGrid from '@/components/data-grid';
 
 const DashboardPage = () => {
-  const { onOpen } = useNewAccount();
-
-  return <Button onClick={onOpen}>新しく決済手段・口座を追加する</Button>;
+  return (
+    <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
+      <DataGrid />
+    </div>
+  );
 };
 
 export default DashboardPage;
