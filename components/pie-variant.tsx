@@ -18,7 +18,7 @@ type Props = {
   }[];
 };
 
-const PieVariant = ({ data }: Props) => {
+const PieVariant = ({ data = [] }: Props) => {
   return (
     <ResponsiveContainer width="100%" height={350}>
       <PieChart>

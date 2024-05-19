@@ -16,7 +16,7 @@ type Props = {
   }[];
 };
 
-const RadialVariant = ({ data }: Props) => {
+const RadialVariant = ({ data = [] }: Props) => {
   return (
     <ResponsiveContainer width="100%" height={350}>
       <RadialBarChart

@@ -6,8 +6,8 @@ import { formatCurrency } from '@/lib/utils';
 const CategoryTooltip = ({ active, payload }: any) => {
   if (!active) return null;
 
-  const name = payload[0].payload.name;
-  const value = payload[0].value;
+  const name = payload[0]?.payload?.name;
+  const value = payload[0]?.value;
 
   return (
     <div className="rounded-sm bg-white shadow-sm border overflow-hidden">
