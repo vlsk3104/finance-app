@@ -19,7 +19,7 @@ const routes = [
   },
   {
     href: '/accounts',
-    label: '支払方法',
+    label: '決済手段・口座',
   },
   {
     href: '/categories',

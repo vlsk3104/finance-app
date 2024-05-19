@@ -68,8 +68,10 @@ const EditAccountSheet = () => {
       <Sheet open={isOpen} onOpenChange={onClose}>
         <SheetContent className="space-y-4">
           <SheetHeader>
-            <SheetTitle>支払方法を編集する</SheetTitle>
-            <SheetDescription>既存の支払方法を編集します。</SheetDescription>
+            <SheetTitle>決済手段・口座を編集する</SheetTitle>
+            <SheetDescription>
+              既存の決済手段・口座を編集します。
+            </SheetDescription>
           </SheetHeader>
           {isLoading ? (
             <div className="absolute inset-0 flex items-center justify-center">

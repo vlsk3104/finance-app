@@ -6,6 +6,7 @@ import './globals.css';
 import { QueryProvider } from '@/providers/query-provider';
 import SheetProvider from '@/providers/sheet-provider';
 import { Toaster } from '@/components/ui/sonner';
+import IgnoreConsoleError from './ignore-console-error';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
             <SheetProvider />
             <main>{children}</main>
             <Toaster />
+            <IgnoreConsoleError />
           </QueryProvider>
         </body>
       </html>
